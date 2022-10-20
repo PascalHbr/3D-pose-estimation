@@ -1,8 +1,8 @@
 from tqdm import tqdm
 import torch
 from utils import set_random_seed, save_model, mean_angle_loss
-from dataset import TurbineDataset
-from model import PoseDataset
+from dataset import PoseDataset
+from model import PoseModel
 import torch.nn as nn
 import torch.optim as optim
 from config import parse_args
@@ -17,7 +17,7 @@ def main(arg):
     print(f"Running on device: {device}")
 
     # Load dataset
-    dataset = TurbineDataset(euler=arg.euler, rgb=arg.rgb)
+    dataset = PoseDataset(euler=arg.euler, rgb=arg.rgb)
     train_size = int(0.8 * len(dataset))
     test_size = len(dataset) - train_size
     train_dataset, test_dataset = torch.utils.data.random_split(dataset, [train_size, test_size])
@@ -26,7 +26,7 @@ def main(arg):
 
     # Initialize model
     num_classes = 3 if arg.euler else 6
-    model = PoseDataset(num_classes=num_classes).to(device)
+    model = PoseModel(num_classes=num_classes).to(device)
 
     # Define hyperparameters
     lr = arg.lr

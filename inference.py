@@ -1,4 +1,4 @@
-from model import PoseDataset
+from model import PoseModel
 from utils import load_model, set_random_seed
 import torch
 from PIL import Image
@@ -14,7 +14,7 @@ def main(arg):
     set_random_seed()
 
     # Load model
-    model = PoseDataset().eval()
+    model = PoseModel().eval()
     device = torch.device("cpu")
     if arg.example:
         load_model(model, device=device, load_name="saved_model_example.pt")

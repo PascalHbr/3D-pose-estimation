@@ -4,9 +4,9 @@ import torch
 from utils import set_random_seed
 
 
-class PoseDataset(nn.Module):
+class PoseModel(nn.Module):
     def __init__(self, num_classes=6):
-        super(PoseDataset, self).__init__()
+        super(PoseModel, self).__init__()
         self.num_classes = num_classes
         self.resnet = resnet50(pretrained=True)
 
@@ -26,6 +26,6 @@ if __name__ == "__main__":
     set_random_seed()
     img = torch.randn(4, 3, 224, 224)
 
-    model = PoseDataset()
+    model = PoseModel()
     out = model(img)
     print(out.shape)

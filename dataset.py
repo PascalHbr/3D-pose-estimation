@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from utils import get_R_from_angles, get_R_from_uv
 
 
-class TurbineDataset(Dataset):
+class PoseDataset(Dataset):
     def __init__(self, euler=False, rgb=False):
         self.euler = euler
         self.rgb = rgb
@@ -80,7 +80,7 @@ class TurbineDataset(Dataset):
 
 
 if __name__ == "__main__":
-    dataset = TurbineDataset(rgb=True)
+    dataset = PoseDataset(rgb=True)
     img, label, img_org = dataset[0]
 
     # plt.imshow(img_org)
