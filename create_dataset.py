@@ -10,7 +10,7 @@ import argparse
 def get_R(angles):
     x, y, z = angles.astype(np.float32)
     
-    #x
+    # x
     Rx = np.array([[1, 0, 0],
                    [0, np.cos(x), -np.sin(x)],
                    [0, np.sin(x), np.cos(x)]])

@@ -10,9 +10,9 @@ from utils import get_R_from_angles, get_R_from_uv
 
 
 class TurbineDataset(Dataset):
-    def __init__(self, euler=False, binary=False):
+    def __init__(self, euler=False, rgb=False):
         self.euler = euler
-        self.binary = binary
+        self.rgb = rgb
 
         self.images = self.load_images()
         self.angles = self.load_angles()
@@ -70,7 +70,7 @@ class TurbineDataset(Dataset):
         angles = self.angles[item]
 
         # Make transformation
-        if self.binary:
+        if not self.rgb:
             img_org = self.make_binary_image(img_org)
         img = self.transforms(img_org)
         label = angles if self.euler else self.get_6D_representations(angles)
@@ -80,26 +80,11 @@ class TurbineDataset(Dataset):
 
 
 if __name__ == "__main__":
-    dataset = TurbineDataset(binary=True)
+    dataset = TurbineDataset(rgb=True)
     img, label, img_org = dataset[0]
-    plt.imshow(img.permute(1, 2, 0).numpy())
-    plt.axis('off')
-    plt.savefig("sample_1.png", bbox_inches='tight')
-
-    img, label, img_org = dataset[2]
-    plt.imshow(img.permute(1, 2, 0).numpy())
-    plt.axis('off')
-    plt.savefig("sample_3.png", bbox_inches='tight')
-
-    img, label, img_org = dataset[8]
-    plt.imshow(img.permute(1, 2, 0).numpy())
-    plt.axis('off')
-    plt.savefig("sample_4.png", bbox_inches='tight')
 
     # plt.imshow(img_org)
-    plt.show()
+    # plt.show()
     print(len(dataset))
     print(img.shape)
     print(label)
-    R = get_R_from_uv(label[:3].unsqueeze(0), label[3:].unsqueeze(0))
-    print(R)

@@ -12,18 +12,12 @@ def set_random_seed(seed=42):
     rng = np.random.RandomState(seed)
 
 
-def save_model(model, binary):
-    if binary:
-        torch.save(model.state_dict(), "saved_model_binary.pt")
-    else:
-        torch.save(model.state_dict(), "saved_model.pt")
+def save_model(model, save_name):
+    torch.save(model.state_dict(), save_name)
 
 
-def load_model(model, device, binary):
-    if binary:
-        model.load_state_dict(torch.load("saved_model_binary.pt", map_location=device))
-    else:
-        model.load_state_dict(torch.load("saved_model.pt", map_location=device))
+def load_model(model, device, load_name):
+    model.load_state_dict(torch.load(load_name, map_location=device))
     return model
 
 
