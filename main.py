@@ -3,7 +3,6 @@ import torch
 from utils import set_random_seed, save_model, mean_angle_loss
 from dataset import PoseDataset
 from model import PoseModel
-import torch.nn as nn
 import torch.optim as optim
 from config import parse_args
 

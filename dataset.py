@@ -1,12 +1,11 @@
 import torch.nn
-from torch.utils.data import Dataset, DataLoader
+from PIL import Image
+from torch.utils.data import Dataset
 from torchvision.transforms import Compose, ToTensor, Normalize, ColorJitter, RandomResizedCrop
 from torchvision.transforms.functional import InterpolationMode
 import numpy as np
 import glob
-from PIL import Image
-import matplotlib.pyplot as plt
-from utils import get_R_from_angles, get_R_from_uv
+from utils import get_R_from_angles
 
 
 class PoseDataset(Dataset):

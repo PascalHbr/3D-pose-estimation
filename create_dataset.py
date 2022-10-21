@@ -5,6 +5,7 @@ from PIL import Image
 import os
 from tqdm import tqdm
 import argparse
+import shutil
 
 
 def get_R(angles):
@@ -29,8 +30,9 @@ def get_R(angles):
 
 def main(arg):
     # Create image directory
-    if not os.path.exists("images"):
-        os.makedirs("images")
+    if os.path.exists("images"):
+        shutil.rmtree("images")
+    os.makedirs("images")
     # Remove existing labels
     if os.path.exists("labels.txt"):
         os.remove("labels.txt")
