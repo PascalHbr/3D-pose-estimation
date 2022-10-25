@@ -24,7 +24,7 @@ To train a ResNet-50 pretrained on ImageNet, use the following promt:
 
 `python main.py`
 
-By default, the model is trained with a batch norm of 64, learning rate of 5e-5, 100 epochs and saved as `saved_model.pt`.
+By default, the model is trained with a batch size of 64, learning rate of 5e-5, 100 epochs and saved as `saved_model.pt`.
 
 You can specify the following parameters:
 - `--gpu`: GPU ID (int)
